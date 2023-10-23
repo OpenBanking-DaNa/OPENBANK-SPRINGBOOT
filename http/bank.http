@@ -6,6 +6,17 @@ Accept: */*
 ### 회원 등록
 POST http://localhost:8080/api/member/signup
 Content-Type: application/json
+Accept: */* // 모든 파일 다 보냄
+Access-Control-Allow-Origin: * // 모든 타입 다 보냄
+
+{
+  "memberId": "0000",
+  "memberPassword": "0000"
+}
+
+### 로그인
+POST http://localhost:8080/api/member/login
+Content-Type: application/json
 Accept: */*
 Access-Control-Allow-Origin: *
 
