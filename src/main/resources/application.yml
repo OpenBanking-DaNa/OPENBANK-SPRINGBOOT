@@ -4,19 +4,27 @@ server:
 spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:localhost:1521:XE
+    url: jdbc:oracle:thin:@localhost:1521:XE
     username: C##OPENBANK
     password: OPENBANK
 
-    jpa:
-      generate-ddl: false
-      show-sql: true
-      database: oracle
-      properties:
-        hibernate.enable_lazy_load_no_trans: true
-        hibernate:
-          '[format_sql]': true
-          use-new-id-generator-mappings: true
-          temp:
-            use_jdbc_metadata_defaults: false
+  # jpa config
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    database: oracle
+    properties:
+      hibernate:
+        '[format_sql]': true
+
+openbanking:
+  api:
+    client-id: ed0e3ff9-a457-4752-b3bf-3bbc390771ef
+    client-secret: 98d67c6b-0c72-41ce-8292-0e2fc56b3476
+
+jwt:
+  secret: OQPpcLHb31kqvS4hhz3xdjw+KfSbUiFffYnXsHsWcQ+0LUfP4gjk0kG+TNKxAE96D3Y9IN8PKqzOFdqrHavgcw==
+
+
+
 

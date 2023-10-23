@@ -1,4 +1,4 @@
-package com.bank.ng.services;
+package com.bank.ng.account.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

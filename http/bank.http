@@ -1,0 +1,15 @@
+### 거래내역조회
+GET https://localhost:8080/api/accounts
+Accept: */*
+
+
+### 회원 등록
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+Accept: */*
+Access-Control-Allow-Origin: *
+
+{
+  "memberId": "0000",
+  "memberPassword": "0000"
+}
