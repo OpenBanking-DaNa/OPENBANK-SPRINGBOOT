@@ -24,3 +24,16 @@ Access-Control-Allow-Origin: *
   "memberId": "0000",
   "memberPassword": "0000"
 }
+
+### OAuth 토큰 조회
+GET https://testapi.openbanking.or.kr/oauth/2.0/authorize
+Accept: */*
+
+{
+  "response_type": "code",
+  "client_id": "ed0e3ff9a4574752b3bf3bbc390771ef",
+  "redirect_uri": "http://localhost:3000",
+  "scope": "login inquiry transfer",
+  "state": 12345678901234567890123456789012,
+  "auth_type": 0
+}
