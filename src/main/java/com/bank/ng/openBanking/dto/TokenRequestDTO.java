@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class TokenRequestDTO {
     private String code;
-    private String client_id;
-    private String client_secret;
-    private String redirect_uri;
-    private String grant_type;
+    private String clientId;
+    private String clientSecret;
+    private String redirectUri;
+    private String grantType;
 }
