@@ -1,0 +1,33 @@
+### 회원 등록
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+Accept: */* // 모든 파일 다 보냄
+Access-Control-Allow-Origin: * // 모든 타입 다 보냄
+
+{
+  "memberId": "1111",
+  "memberPassword": "1111"
+}
+
+
+### OAuth 토큰 조회
+GET https://testapi.openbanking.or.kr/oauth/2.0/authorize?response_type=code
+&client_id=4e542766-aa17-4ff2-aa26-775da489d71c
+&redirect_uri="http://localhost:8080"
+&scope="login cardinfo"
+&state="12345678901234567890123456789012"
+&auth_type=0
+Accept: */*
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+
+###
+POST https://testapi.openbanking.or.kr/oauth/2.0/token
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+
+{
+"code": "jm4pk4ajmNLtQ22Vt7TVS4nmg1qNYV",
+"client_id": "4e542766-aa17-4ff2-aa26-775da489d71c",
+"client_secret": "005ddb1b-65d0-4277-9c4d-1ca1e38cb4d8",
+"redirect_uri": "http://localhost:3000/open",
+"grant_type": "authorization_code"
+}
