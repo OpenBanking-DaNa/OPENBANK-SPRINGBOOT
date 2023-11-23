@@ -5,7 +5,9 @@ import com.bank.ng.jwt.TokenProvider;
 import com.bank.ng.member.dto.MemberDTO;
 import com.bank.ng.member.dto.TokenDTO;
 import com.bank.ng.member.entity.Member;
+import com.bank.ng.member.entity.OAuth;
 import com.bank.ng.member.repository.MemberRepository;
+import com.bank.ng.member.repository.OAuthRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,16 +19,19 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final OAuthRepository oAuthRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final ModelMapper modelMapper;
 
     public MemberService(
             MemberRepository memberRepository,
+            OAuthRepository oAuthRepository,
             PasswordEncoder passwordEncoder,
             TokenProvider tokenProvider,
             ModelMapper modelMapper) {
         this.memberRepository = memberRepository;
+        this.oAuthRepository = oAuthRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenProvider = tokenProvider;
         this.modelMapper = modelMapper;
@@ -63,6 +68,8 @@ public class MemberService {
         // 1. 아이디 조회
         Member member = memberRepository.findByMemberId(memberDTO.getMemberId());
 
+        System.out.println("member" + member);
+
         log.info("[MemberService] login - member 조회 {} ===============", member);
 
         if(member == null){
@@ -78,6 +85,19 @@ public class MemberService {
         // 3. 토큰 발급
         TokenDTO tokenDTO = tokenProvider.generateTokenDTO(member);
         log.info("[MemberService] login - TokenDTO {} ", tokenDTO);
+
+
+        // 4. clientId 추가
+        int memberCode = member.getMemberCode();
+
+        System.out.println("memberCode : " + memberCode);
+
+        OAuth oAuth = oAuthRepository.findClientIdByMemberCode(memberCode);
+        System.out.println("oAuth : " + oAuth);
+
+
+        tokenDTO.setClientId(oAuth.getClientId());
+
         log.info("[MemberService] login End ===========================");
         return tokenDTO;
     }
