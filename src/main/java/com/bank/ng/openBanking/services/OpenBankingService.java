@@ -1,5 +1,7 @@
 package com.bank.ng.openBanking.services;
 
+import com.bank.ng.member.entity.OAuth;
+import com.bank.ng.member.repository.OAuthRepository;
 import com.bank.ng.openBanking.dto.TokenRequestDTO;
 import com.bank.ng.openBanking.dto.TokenResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +12,13 @@ import java.security.SecureRandom;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class OpenBankingService {
+
+    private final OAuthRepository oAuthRepository;
+
+    public OpenBankingService(OAuthRepository oAuthRepository) {
+        this.oAuthRepository = oAuthRepository;
+    }
 
     public Object RandomGenerator() {
 
@@ -36,9 +43,21 @@ public class OpenBankingService {
 
     }
 
+    public Object getClientSecret(int memberCode) {
+        log.info("===== OpenBankingService : getClientSecret start");
+
+        OAuth clientSecret = oAuthRepository.findClientSecretByMemberCode(memberCode);
+
+        log.info("===== OpenBankingService : clientSecret {}", clientSecret);
+
+        log.info("===== OpenBankingService : getClientSecret end");
+        return clientSecret;
+    }
+
 
     public TokenResponseDTO requestToken(TokenRequestDTO tokenRequest) {
         log.info("===== OpenBankingService : requestToken");
         return null;
     }
+
 }
