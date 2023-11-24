@@ -20,6 +20,7 @@ spring:
 jwt:
   secret: OQPpcLHb31kqvS4hhz3xdjw+KfSbUiFffYnXsHsWcQ+0LUfP4gjk0kG+TNKxAE96D3Y9IN8PKqzOFdqrHavgcw==
 
-
+OB_tokenRequestURL : https://testapi.openbanking.or.kr/oauth/2.0/token
+OB_client_key : 005ddb1b-65d0-4277-9c4d-1ca1e38cb4d8
 
 

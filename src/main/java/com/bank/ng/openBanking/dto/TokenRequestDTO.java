@@ -1,6 +1,8 @@
 package com.bank.ng.openBanking.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 @Data
 public class TokenRequestDTO {
@@ -9,4 +11,7 @@ public class TokenRequestDTO {
     private String client_secret;
     private String redirect_uri;
     private String grant_type;
+
+    private String memberId;
+
 }
