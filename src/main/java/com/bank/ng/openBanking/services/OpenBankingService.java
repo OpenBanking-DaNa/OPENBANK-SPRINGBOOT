@@ -34,7 +34,7 @@ public class OpenBankingService {
     @Value("${OB_client_key}")
     private String client_key;
 
-//    private final TestRepository testRepository;
+    //    private final TestRepository testRepository;
     private final ModelMapper mapper;
 
     public Object RandomGenerator() {
@@ -58,13 +58,6 @@ public class OpenBankingService {
         return randomHex;
 
     }
-
-
-//    public TokenResponseDTO requestToken(TokenRequestDTO tokenRequest) {
-//        log.info("===== OpenBankingService : requestToken");
-//        return null;
-//    }
-
 
     public Object requestToken(TokenRequestDTO tokenRequest) {
         // Authorization Code로 AccessToken 요청

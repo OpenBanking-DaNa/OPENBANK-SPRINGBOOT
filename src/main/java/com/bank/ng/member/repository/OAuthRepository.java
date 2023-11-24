@@ -9,4 +9,7 @@ public interface OAuthRepository extends JpaRepository<OAuth, Integer> {
 
     // 회원코드로 cilentId 조회
     OAuth findClientIdByMemberCode(int memberCode);
+
+    // 회원번호로 clientSecret 조회
+    OAuth findClientSecretByMemberCode(int memberCode);
 }
