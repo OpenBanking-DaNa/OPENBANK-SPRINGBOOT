@@ -18,11 +18,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.security.SecureRandom;
 import java.util.Collections;
 
@@ -106,8 +101,8 @@ public class OpenBankingService {
             OB_User obUser = mapper.map(tokenResponse, OB_User.class);
             log.info("----- OAuthService : RandomGenerator -----obUser {}", obUser);
 
+            // 유저 토큰정보 DB insert
             obRepository.save(obUser);
-
 
             return tokenResponse;
 
@@ -121,6 +116,7 @@ public class OpenBankingService {
 
     private TokenResponseDTO convertResponseBody(String responseBody) {
 
+        // Gson라이브러리를 사용한 Json 파싱작업
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(responseBody);
 
