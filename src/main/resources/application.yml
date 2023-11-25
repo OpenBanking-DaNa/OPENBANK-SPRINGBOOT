@@ -22,6 +22,7 @@ jwt:
 
 OB_tokenRequestURL : https://testapi.openbanking.or.kr/oauth/2.0/token
 OB_cardinfoReqURL : https://testapi.openbanking.or.kr/oauth/v2.0/cards
-OB_client_key : 005ddb1b-65d0-4277-9c4d-1ca1e38cb4d8
-
+# 커밋할때 삭제하기
+OB_client_key :
+#
 
