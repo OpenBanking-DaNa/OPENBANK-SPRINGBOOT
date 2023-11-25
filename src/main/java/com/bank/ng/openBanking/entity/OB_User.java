@@ -7,8 +7,10 @@ import lombok.ToString;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TBL_OB_USER")
 @Data
 @NoArgsConstructor
 @ToString
@@ -20,13 +22,13 @@ public class OB_User {
     @Column(name = "MEMBER_ID")
     private String memberId;
     @Column(name = "ACCESS_TOKEN")
-    private String access_token;
+    private String accessToken;
     @Column(name = "TOKEN_TYPE")
-    private String token_type;
+    private String tokenType;
     @Column(name = "REFRESH_TOKEN")
-    private String refresh_token;
+    private String refreshToken;
     @Column(name = "EXPIRES_IN")
-    private String expires_in;
+    private String expiresIn;
     @Column(name = "SCOPE")
     private String scope;
 
