@@ -4,6 +4,7 @@ package com.bank.ng.openBanking.services;
 import com.bank.ng.openBanking.dto.TokenRequestDTO;
 import com.bank.ng.openBanking.dto.TokenResponseDTO;
 import com.bank.ng.openBanking.entity.OB_User;
+import com.bank.ng.openBanking.repository.OpenBankingRepository;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -34,8 +36,8 @@ public class OpenBankingService {
     @Value("${OB_client_key}")
     private String client_key;
 
-//    private final TestRepository testRepository;
     private final ModelMapper mapper;
+    private final OpenBankingRepository obRepository;
 
     public Object RandomGenerator() {
 
@@ -66,6 +68,7 @@ public class OpenBankingService {
 //    }
 
 
+    @Transactional
     public Object requestToken(TokenRequestDTO tokenRequest) {
         // Authorization Code로 AccessToken 요청
 
@@ -97,9 +100,15 @@ public class OpenBankingService {
 
             // json 응답객체 파싱
             TokenResponseDTO tokenResponse = convertResponseBody(responseBody);
-            tokenResponse.setMemberId(tokenRequest.getMemberId());
 
-//            testRepository.save(mapper.map(tokenResponse, OB_User.class));
+
+            tokenResponse.setMemberId(tokenRequest.getMemberId());
+            log.info("----- OAuthService : RandomGenerator -----tokenResponse {}", tokenResponse);
+
+            OB_User obUser = mapper.map(tokenResponse, OB_User.class);
+            log.info("----- OAuthService : RandomGenerator -----obUser {}", obUser);
+
+            obRepository.save(obUser);
 
 
             return tokenResponse;

@@ -37,7 +37,6 @@ public class OpenBankingController {
 
         log.info("-------- OpenBankingController : requestToken {} ", tokenRequest);
 
-
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK,
                 "사용자 토큰 발급 요청", openBankingService.requestToken(tokenRequest)));
     }
