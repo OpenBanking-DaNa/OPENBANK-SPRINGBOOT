@@ -95,7 +95,6 @@ public class OpenBankingService {
 
             // json 응답객체 파싱
             TokenResponseDTO tokenResponse = convertResponseBody(responseBody);
-            tokenResponse.setMemberId(tokenRequest.getMemberId());
             log.info("----- OAuthService : RandomGenerator -----tokenResponse {}", tokenResponse);
 
             OB_User obUser = mapper.map(tokenResponse, OB_User.class);
@@ -121,10 +120,6 @@ public class OpenBankingService {
         JsonElement element = parser.parse(responseBody);
 
         return TokenResponseDTO.builder()
-                .accessToken(element.getAsJsonObject().get("access_token").getAsString())
-                .tokenType(element.getAsJsonObject().get("token_type").getAsString())
-                .refreshToken(element.getAsJsonObject().get("refresh_token").getAsString())
-                .expiresIn(element.getAsJsonObject().get("expires_in").getAsString())
                 .scope(element.getAsJsonObject().get("scope").getAsString())
                 .user_seq_no(element.getAsJsonObject().get("user_seq_no").getAsString())
                 .build();

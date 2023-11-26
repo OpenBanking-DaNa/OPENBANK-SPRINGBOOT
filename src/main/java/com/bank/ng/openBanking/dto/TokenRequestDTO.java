@@ -12,5 +12,5 @@ public class TokenRequestDTO {
     private String redirectUri;
     private String grantType;
 
-    private String memberId;
+    private String memberCode;
 }
